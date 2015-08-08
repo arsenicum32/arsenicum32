@@ -70,6 +70,46 @@ if (Meteor.isClient) {
     'mouse:out':function(e){
       e.target.setFill('green');
       canvas.renderAll();
+    },
+    'touch:gesture': function() {
+      alert('gesture');
+    },
+    'touch:dragstart': function(options) {
+      if (options.target) {
+        options.target.opacity = 0.5;
+        canvas.renderAll();
+      };
+      if (canvas.getActiveObject() == null) {
+        PRX = options.e.clientX;
+        PRY = options.e.clientY;
+        CAN = true;
+      }
+    },
+    'touch:dragenter': function(options) {
+      if (canvas.getActiveObject() == null && CAN) {
+        canvas.absolutePan(new fabric.Point(offsetX - options.e.clientX + PRX, offsetY - options.e.clientY + PRY));
+      }
+    },
+    'touch:dragend': function(options) {
+      if (options.target) {
+        options.target.opacity = 1;
+        canvas.renderAll();
+      };
+      if (canvas.getActiveObject() == null) {
+        offsetX -= options.e.clientX - PRX;
+        offsetY -= options.e.clientY - PRY;
+        canvas.absolutePan(new fabric.Point(offsetX, offsetY));
+        CAN = false;
+      }
+    },
+    'touch:orientation': function() {
+      alert('shake');
+    },
+    'touch:shake': function() {
+    alert('orientation');
+    },
+    'touch:longpress': function() {
+      alert('longpress');
     }
   });
   // "add" rectangle onto canvas
