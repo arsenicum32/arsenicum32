@@ -1,0 +1,38 @@
+@import url('http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin,cyrillic')
+body
+  margin 0
+  display -webkit-flex
+  -webkit-flex-direction column
+#AdminPanel
+  position absolute
+  right 0
+  height 99vh
+  width 50vw
+  z-index 99
+  font-family 'Ubuntu Mono'
+  font-size 14px
+  opacity .8
+  @media screen and (max-width: 740px)
+    bottom 0
+    left 0
+    width 99vw
+    height 50vh
+#circle
+  -webkit-box-sizing border-box
+  opacity .7
+  width 10vw
+  height 10vw
+  max-width 40px
+  max-height 40px
+  border-radius 50%
+  Background red
+  position absolute
+  top 5vw
+  right 5vw
+  z-index 100
+  border 4px dashed white
+  &:hover
+    Background black
+  &:focus
+    outline none
+    border-color transparent
